@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		/* list-style:none; */
+	}
+	html{
+		width: 100%;
+		height: 100%;
+	}
+	body{
+		width: 100%;
+		height: 100%;
+		background: url("images/f9.jpg") no-repeat;
+		background-size: 100% 100%;
+	}
+	#pic{
+		width: 905px;
+		height: 400px;
+		box-shadow: 0 0 8px #222;
+		margin: 100px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#pic .piclist li{
+		list-style: none;
+		position: absolute;
+	}
+	#pic ul li.pic1{
+		width: 96px;
+		height: 63px;
+		left: 0px;
+		top: -80px;
+		opacity:0.2;
+		z-index: 1;
+	}
+	#pic ul li.pic2{
+		width: 288px;
+		height: 180px;
+		left: 49px;
+		top: 110px;
+		opacity:0.6;
+		z-index: 2;
+	}
+	#pic ul li.pic3{
+		width: 384px;
+		height: 240px;
+		left: 127px;
+		top: 80px;
+		opacity:0.9;
+		z-index: 3;
+	}
+	#pic ul li.pic4{
+		width: 480px;
+		height: 300px;
+		left: 210px;
+		top: 50px;
+		opacity: 1;
+		z-index: 4;
+	}
+	#pic ul li.pic5{
+		width: 384px;
+		height: 240px;
+		left: 394px;
+		top: 80px;
+		opacity:0.9;
+		z-index: 3;
+	}
+	#pic ul li.pic6{
+		width: 288px;
+		height: 180px;
+		left: 575px;
+		top: 110px;
+		opacity:0.6;
+		z-index: 2;
+	}
+	#pic ul li.pic7{
+		width: 96px;
+		height: 63px;
+		left: 810px;
+		top: -80px;
+		opacity:0.2;
+		z-index: 1;
+	}
+	#pic ul li.pic8{
+		width: 96px;
+		height: 63px;
+		left: 810px;
+		top: -80px;
+		opacity:0.2;
+		z-index: 1;
+	}
+	#pic span{
+		display:block;
+		width:80px;
+		height:80px;
+		position:absolute;
+		top:160px;
+		z-index:30;
+		cursor:pointer;
+		opacity:0.7;
+	}
+	#pic:hover span{
+		opacity:1;
+	}
+	#pic span.prev{
+		left:150px;
+	}
+	#pic span.next{
+		right:160px;
+	}
+	.line{
+		width: 115px;
+		height: 5px;
+		/* background: blue;	 */
+		position: absolute;
+		top: 95%;
+		left: 50%;
+		margin-left: -57.5px;
+	}
+	#pic .line ul{
+		display: flex;
+		justify-content: space-between;
+	}
+	#pic .line ul li{
+		list-style: none;
+		width: 10px;
+		height: 5px;
+		background: #ccc;
+	}
+	#pic .line ul li a{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+ </style>
+ <body>
+		<div class="pic" id="pic">
+			<ul class="piclist">
+				<li class="pic1">
+					<a href="#">
+						<img src="images/f1.jpg" width="100%" height="100%"/>
+					</a>
+				</li>
+				<li class="pic2">
+					<a href="#">
+						<img src="images/f2.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic3">
+					<a href="#">
+						<img src="images/f3.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic4">
+					<a href="#">
+						<img src="images/f4.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic5">
+					<a href="#">
+						<img src="images/f5.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic6">
+					<a href="#">
+						<img src="images/f6.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic7">
+					<a href="#">
+						<img src="images/f7.jpg" width="100%" height="100%" />
+					</a>
+				</li>
+				<li class="pic8">
+					<a href="#">
+						<img src="images/f8.jpg" width="100%" height="100%"/>
+					</a>
+				</li>
+			</ul>
+			<div class="line">
+				<ul>
+					<li style="background: #45c71c;"><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+					<li><a href="javascript:;"></a></li>
+				</ul>
+			</div>
+			<span class="prev"><img src="images/arrow1.png" /></span>
+			<span class="next"><img src="images/arrow2.png" /></span>
+		</div>
+		<script>
+			let lilist=document.getElementsByClassName('pic')[0].getElementsByTagName('li');
+			let btnlist=document.getElementsByClassName('pic')[0].getElementsByTagName('span');
+			let imgArray=['pic1','pic2','pic3','pic4','pic5','pic6','pic7','pic8'];
+            let index=0;
+            let timer=setInterval(nextPic, 2000);
+            let linelist=document.getElementsByClassName('pic')[0].getElementsByClassName('line')[0].getElementsByTagName('li');
+			console.log(linelist)
+			function nextPic(){
+				imgArray.unshift(imgArray[7]);
+				imgArray.pop();
+				for(let i in lilist){
+					if(i-0+1) lilist[i].setAttribute('class',imgArray[i]);
+				}
+				index++;
+				if(index>7){
+					index=0;
+				}
+				lineColor();
+			}
+			function prePic(){
+				imgArray.push(imgArray[1]);
+				imgArray.shift();
+				for(let i in lilist){
+					if(i-0+1) {lilist[i].setAttribute('class',imgArray[i])};
+				}
+				index--;
+				if(index<0){
+					index=7;
+				}
+				lineColor();
+			}
+			function lineColor(){
+				for(let i in linelist){
+					if(i-0+1) {linelist[i].style.background='#ccc'}
+				}
+			    linelist[index].style.background='#45c71c';
+			}
+			btnlist[0].addEventListener('click',function(){
+				prePic();
+				lineColor();
+			})
+			btnlist[1].addEventListener('click',function(){
+				nextPic();
+				lineColor();
+			})
+			// document.addEventListener('click',function(){
+			// 	let ele=event.target.parentNode.parentNode;
+			// 	if(ele.getAttribute('class')=='pic4'){
+			// 		nextPic();
+			// 	}else if(ele.getAttribute('class')=='pic3'){
+			// 		prePic();
+			// 	}
+			// })
+            document.getElementsByClassName('pic')[0].onmouseover=function(){
+            	clearInterval(timer);
+            };
+            document.getElementsByClassName('pic')[0].onmouseout=function(){
+            	timer=setInterval(nextPic,2000);
+            };
+		</script>
+	</body>
+</html>
